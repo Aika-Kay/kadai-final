@@ -1,7 +1,16 @@
-<div class="row">
-  <h1>My Wish List</h1>
-</div>
+<% if logged_in? %>
+  <div class="row">
+    <h1>My Wish List</h1>
+  </div>
 
-<div class="col-sm-8">
+  <div class="col-sm-8">
 
-</div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to  Wish List</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
