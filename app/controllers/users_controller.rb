@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @places = @user.places.order(id: :desc).page(params[:page])
-    # @gones = @user.gones.order(id: :desc).page(params[:page])
     @gones = @user.places.where(status: "Gone").count
     counts(@user)
   end

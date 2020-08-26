@@ -41,7 +41,6 @@ class PlacesController < ApplicationController
     @place.update(status: "Gone")
     @places = Place.all.includes(:user)
     flash[:success] = '行った場所に変更しました'
-    # counts(@user)
     redirect_back(fallback_location: root_path)
   end
   

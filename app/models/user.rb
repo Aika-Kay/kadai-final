@@ -7,10 +7,4 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :places
-  
-  # def gones(place)
-    # self.gones.find_or_create_by(place_id: place.id)
-  # end
-
-  
 end
