@@ -37,7 +37,7 @@
             <td><%= place.place %></td>
             <td><%= place.reason %></td>
             <td><%= button_to place.status == 'Gone' ?  '行った' :  'まだ', gones_place_path(place), method: :patch %></td>
-            <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', place, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
           </tr>
         <% end %>
       </tbody>
