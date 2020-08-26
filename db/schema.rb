@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_061213) do
+ActiveRecord::Schema.define(version: 2020_08_26_092644) do
 
   create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "place"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2020_08_22_061213) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "gone"
     t.index ["user_id"], name: "index_places_on_user_id"
   end
 
