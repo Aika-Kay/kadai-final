@@ -13,7 +13,7 @@
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to 'My list', user_path(current_user) %></li>
               <li class="dropdown-divider"></li>
-              <li class="dropdown-item">新規追加</li>
+              <li class="dropdown-item"><%= link_to '新規追加', new_place_path %></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
           </li>

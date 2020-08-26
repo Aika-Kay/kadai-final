@@ -5,4 +5,12 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  
+  has_many :places
+  
+  # def gones(place)
+    # self.gones.find_or_create_by(place_id: place.id)
+  # end
+
+  
 end

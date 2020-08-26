@@ -1,11 +1,49 @@
 <% if logged_in? %>
-  <div class="row">
-    <h1>My Wish List</h1>
+  <div class="card text-white">
+    <div class="card-img text-center">
+      <%= image_tag 'top.png' %>
+    </div>
+    <div class="card-img-overlay">
+      <h1 class="text-center">My Wish List</h1>
+    </div>
   </div>
 
-  <div class="col-sm-8">
-
+  <div class="">
+    <div class="text-center">
+      <h3>現在のステータス</h3>
+      <ul>
+        <p>登録した場所 <span class="badge badge-secondary"><%= @count_places %></span></p>
+        <p>行った場所 <span class="badge badge-secondary"><%= @gones %></span></p>
+        <p><%= link_to '新しく追加する', new_place_path %></p>
+      </ul>
+    </div>    
   </div>
+  
+  <% if @places.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>登録日</th>
+          <th>行きたい場所</th>
+          <th>理由・キッカケ</th>
+          <th>ステータス</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @places.each do |place| %>
+          <tr>
+            <td><%= place.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= place.place %></td>
+            <td><%= place.reason %></td>
+            <td><%= button_to place.status == 'Gone' ?  '行った' :  'まだ', gones_place_path(place), method: :patch %></td>
+            <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
