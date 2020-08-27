@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'users#show'
   
-  get 'login', to: 'sessions#new'
+  get 'login', to: 'sessionrails s#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
