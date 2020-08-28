@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
+  before_action :correct_user, only: [:show]
   
   def show
     @user = User.find(params[:id])
     @places = @user.places.order(id: :desc).page(params[:page])
     @gones = @user.places.where(status: "Gone").count
     counts(@user)
+    
   end
 
   def new
@@ -27,10 +29,8 @@ class UsersController < ApplicationController
   private
   
   def correct_user
-    @user = current_user.users.find_by(id: params[:id])
-    unless @user
-      redirect_to root_url
-    end
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
   end
   
   def user_params
