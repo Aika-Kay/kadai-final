@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:show]
   
   def show
+    correct_user
     @user = User.find(params[:id])
     @places = @user.places.order(id: :desc).page(params[:page])
     @gones = @user.places.where(status: "Gone").count
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to root_url
+      redirect_to login_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
   
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless @user == current_user
+    redirect_to current_user unless @user == current_user
   end
   
   def user_params
