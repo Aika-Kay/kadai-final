@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:show, :destroy, :gone]
+  before_action :correct_user, only: [:show, :destroy, :gone, :notgone]
   
   def index
     @places = current_user.places
@@ -38,12 +38,16 @@ class PlacesController < ApplicationController
   
   def gones
     correct_user
-    @place.update(status: "Gone")
-    @places = Place.all.includes(:user)
-    flash[:success] = '行った場所に変更しました'
+    if @place.status == nil
+      @place.update(status: "Gone")
+      @places = Place.all.includes(:user)
+      flash[:success] = '行った場所に変更しました'
+    else
+      flash[:info] = 'すでに行った場所に変更してます'
+    end
     redirect_back(fallback_location: root_path)
   end
-  
+
   
   private
   
